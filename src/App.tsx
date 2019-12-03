@@ -82,7 +82,7 @@ function App() {
         }
       });
     });
-    setTimeout(runSimulation, 200);
+    setTimeout(runSimulation, 100);
   }, []);
 
   const toggleRunSimulation = () => {
@@ -92,7 +92,18 @@ function App() {
       runSimulation();
     }
   };
-  console.log(savedGrids);
+
+  const findPopulation = (): number => {
+    let count = 0;
+    grid.forEach(row => {
+      row.forEach(cell => {
+        if (cell) {
+          count += 1;
+        }
+      });
+    });
+    return count;
+  };
 
   return (
     <div style={{ width: "1600px", display: "flex" }}>
@@ -133,6 +144,7 @@ function App() {
           flexDirection: "column"
         }}
       >
+        <div>{`Popluation: ${findPopulation()}`}</div>
         <button onClick={toggleRunSimulation}>
           {running ? "stop" : "start"}
         </button>
