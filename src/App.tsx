@@ -100,8 +100,13 @@ function App() {
           rows.map((row, k) => (
             <div
               key={`${i}-${k}`}
-              onClick={() => {
+              onMouseDown={_ => {
                 update(i, k);
+              }}
+              onMouseOver={e => {
+                if (e.buttons === 1) {
+                  update(i, k);
+                }
               }}
               style={{
                 width: 20,
